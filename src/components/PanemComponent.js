@@ -1,19 +1,17 @@
 import React, {useState} from 'react';
 import './PanemComponent.css';
 import axios from "axios"; // Подключаем файл стилей для компонента
-import Loader from './Loader'; // Импортируем компонент Loader
 
 const PanemComponent = message => {
-    const [loading, setLoading] = useState(false);
-    const [schema, setSchema] = useState('');
+  //  const [schema, setSchema] = useState('');
     const [account, setAccount] = useState('');
     const [level, setLevel] = useState('');
     const [banknotes, setBanknotes] = useState('')
     const [coins, setCoins] = useState('')
 
-    const handleSchemaChange = (schemaValue) => {
-        setSchema(schemaValue.target.value);
-    };
+    // const handleSchemaChange = (schemaValue) => {
+    //     setSchema(schemaValue.target.value);
+    // };
 
     const handleAccountChange = (accountValue) => {
         setAccount(accountValue.target.value)
@@ -33,7 +31,6 @@ const PanemComponent = message => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setLoading(true);
         try {
             const response = await axios.post(`http://localhost:8080/api/user-counter/banknotes/${account}`, {
                 value: banknotes
@@ -42,8 +39,6 @@ const PanemComponent = message => {
             handleReset();
         } catch (error) {
             console.error('Ошибка при отправке данных:', error);
-        } finally {
-            setTimeout(() => setLoading(false), 4000); // Устанавливаем loading в false через 3 секунды
         }
     };
 
@@ -65,7 +60,7 @@ const PanemComponent = message => {
     }
 
     const handleReset = () => {
-        setSchema('');
+       // setSchema('');
         setAccount('');
         setLevel('');
         setBanknotes('');
@@ -74,16 +69,16 @@ const PanemComponent = message => {
 
     return (
         <form className="main_form" onSubmit={handleSubmit} onReset={handleReset}>
-            <div>
-                <label htmlFor="schema">Схема:</label>
-                <input
-                    type="schema"
-                    id="qa_schema_input_field"
-                    value={schema}
-                    onChange={handleSchemaChange}
-                    placeholder="Введите схему"
-                />
-            </div>
+            {/*<div>*/}
+            {/*    <label htmlFor="schema">Схема:</label>*/}
+            {/*    <input*/}
+            {/*        type="schema"*/}
+            {/*        id="qa_schema_input_field"*/}
+            {/*        value={schema}*/}
+            {/*        onChange={handleSchemaChange}*/}
+            {/*        placeholder="Введите схему"*/}
+            {/*    />*/}
+            {/*</div>*/}
             <div>
                 <label htmlFor="account">Аккаунт:</label>
                 <input
