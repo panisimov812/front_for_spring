@@ -63,6 +63,11 @@
     cursor: pointer;
 }
 
+.btn.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
 .btn-primary {
     background-color: #007bff;
 }
