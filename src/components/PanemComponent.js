@@ -84,11 +84,12 @@ const PanemComponent = message => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (banknotes !== '') {
+        if (banknotes !== '' && coins !== '') {
             await handleBanknoteSubmit(event);
+            await handleCoinSubmit(event);
         } else if (coins !== '') {
             await handleCoinSubmit(event);
-        }
+        } else handleBanknoteSubmit(event);
     };
 
     return (
