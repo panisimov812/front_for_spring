@@ -59,6 +59,23 @@ const PanemComponent = message => {
         }, 6000);
     };
 
+    const handleLevelSubmit = async (event) => {
+        event.preventDefault();
+        setSubmitting(true);
+        try {
+            const response = await axios.post(`http://localhost:8080/api/user-counter/level/${account}`, {
+                value: level
+            });
+            console.log('Ответ сервера:', response.data);
+            handleReset();
+        } catch (error) {
+            console.error('Ошибка при отправке данных;', error);
+        }
+        setTimeout(() => {
+            setSubmitting(false);
+        }, 6000)
+    };
+
     const handleButtonPlusThousandBanknotesClick = () => {
         if (!isNaN(banknotes) && banknotes !== '') {
             setBanknotes(parseInt(banknotes) + 1000);
@@ -83,59 +100,61 @@ const PanemComponent = message => {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        if (banknotes !== '' && coins !== '') {
-            await handleBanknoteSubmit(event);
-            await handleCoinSubmit(event);
-        } else if (coins !== '') {
-            await handleCoinSubmit(event);
-        } else handleBanknoteSubmit(event);
+        // Проверяем условия и отправляем соответствующие запросы
+        if (banknotes !== '')  await handleBanknoteSubmit(event);
+        if (coins !== '') await handleCoinSubmit(event);
+        if (level !== '') await handleLevelSubmit(event);
+        }
+
+        return (
+            <form className="main_form" onSubmit={handleSubmit} onReset={handleReset}>
+                <div>
+                    <label htmlFor="account">Аккаунт:</label>
+                    <input
+                        type="account"
+                        value={account}
+                        onChange={handleAccountChange}
+                        placeholder="Введите аккаунт"
+                    />
+                </div>
+                <div>
+                    <label htmlFor="level">Уровень:</label>
+                    <input
+                        type="level"
+                        value={level}
+                        onChange={handleLevelChange}
+                        placeholder="Введите уровень"
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="banknotes">Банкноты:</label>
+                    <input
+                        type="banknotes"
+                        value={banknotes}
+                        onChange={handleBanknotes}
+                    />
+                    <button type="button" className="btn btn-primary"
+                            onClick={handleButtonPlusThousandBanknotesClick}>+1000
+                    </button>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="coins">Монеты:</label>
+                    <input
+                        type="coins"
+                        value={coins}
+                        onChange={handleCoins}
+                    />
+                    <button type="button" className="btn btn-primary" onClick={handleButtonPlusThousandCoinsClick}>+1000
+                    </button>
+                </div>
+                <div className="buttons">
+                    <button type="submit" className={`btn btn-primary ${submitting ? 'disabled' : ''}`}
+                            disabled={submitting}>Отправить
+                    </button>
+                    <button type="reset" className="btn">Сбросить</button>
+                </div>
+            </form>
+        );
     };
 
-    return (
-        <form className="main_form" onSubmit={handleSubmit} onReset={handleReset}>
-            <div>
-                <label htmlFor="account">Аккаунт:</label>
-                <input
-                    type="account"
-                    value={account}
-                    onChange={handleAccountChange}
-                    placeholder="Введите аккаунт"
-                />
-            </div>
-            <div>
-                <label htmlFor="level">Уровень:</label>
-                <input
-                    type="level"
-                    value={level}
-                    onChange={handleLevelChange}
-                    placeholder="Введите уровень"
-                />
-            </div>
-            <div className="form-group">
-                <label htmlFor="banknotes">Банкноты:</label>
-                <input
-                    type="banknotes"
-                    value={banknotes}
-                    onChange={handleBanknotes}
-                />
-                <button type="button" className="btn btn-primary" onClick={handleButtonPlusThousandBanknotesClick}>+1000</button>
-            </div>
-            <div className="form-group">
-                <label htmlFor="coins">Монеты:</label>
-                <input
-                    type="coins"
-                    value={coins}
-                    onChange={handleCoins}
-                />
-                <button type="button" className="btn btn-primary" onClick={handleButtonPlusThousandCoinsClick}>+1000</button>
-            </div>
-            <div className="buttons">
-                <button type="submit" className={`btn btn-primary ${submitting ? 'disabled' : ''}`} disabled={submitting}>Отправить</button>
-                <button type="reset" className="btn">Сбросить</button>
-            </div>
-        </form>
-    );
-};
-
-export default PanemComponent;
+    export default PanemComponent;
