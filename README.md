@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Panem Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Этот проект представляет собой frontend для веб-приложения, написанный на React.
 
-## Available Scripts
+## Описание
 
-In the project directory, you can run:
+Frontend часть приложения предназначена для взаимодействия с backend'ом через API, предоставляемое backend'ом проекта "Panem Backend". Она позволяет пользователям вводить данные и отправлять запросы на обновление информации в базе данных.
 
-### `npm start`
+## Использование
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Для использования этого frontend'а необходимо запустить его в среде разработки или развернуть на сервере, а также настроить доступ к API backend'а. Для этого выполните следующие шаги:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Установите все зависимости, запустив команду `npm install`.
+2. Настройте адрес и порт, по которому развернут backend проекта, в файле `PanemComponent.js`.
+3. Запустите проект, выполнив команду `npm start`.
 
-### `npm test`
+## Ссылки
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Backend проекта на GitHub](https://github.com/panisimov812/spring_pjct)
 
-### `npm run build`
+## Примечание
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Этот проект разработан для внутреннего использования. Но моежт быть использован вами.Он предназначен для работы вместе с [backend частью приложения](https://github.com/panisimov812/spring_pjct).  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Об авторе:**
+Петр Анисимов, tg: https://t.me/petr_anisimov 
+Моя группа в телеграм tg: https://t.me/bugandgo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ 
