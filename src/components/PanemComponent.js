@@ -7,6 +7,7 @@ const PanemComponent = message => {
     const [level, setLevel] = useState('');
     const [banknotes, setBanknotes] = useState('');
     const [coins, setCoins] = useState('');
+    const [compensation, setCompensation] = useState('');
     const [submitting, setSubmitting] = useState(false);
 
     const handleAccountChange = (accountValue) => {
@@ -23,6 +24,10 @@ const PanemComponent = message => {
 
     const handleCoins = (e) => {
         setCoins(e.target.value)
+    }
+
+    const handleCompensation = (e) => {
+        setCompensation(e.target.value)
     }
 
     const handleBanknoteSubmit = async (event) => {
@@ -76,6 +81,23 @@ const PanemComponent = message => {
         }, 6000)
     };
 
+    const handleCompensationSubmit = async (event) => {
+        event.preventDefault();
+        setSubmitting(true);
+        try {
+            const response = await axios.post(`http://localhost:8080/api/user-counter/compensation/${account}`, {
+                value: compensation
+            });
+            console.log('Ответ сервера:', response.data);
+            handleReset();
+        } catch (error) {
+            console.error('Ошибка при отправке данных;', error);
+        }
+        setTimeout(() => {
+            setSubmitting(false);
+        }, 6000)
+    };
+
     const handleButtonPlusThousandBanknotesClick = () => {
         if (!isNaN(banknotes) && banknotes !== '') {
             setBanknotes(parseInt(banknotes) + 1000);
@@ -92,11 +114,20 @@ const PanemComponent = message => {
         }
     }
 
+    const handleButtonPlusThousandCompensationClick = () => {
+        if (!isNaN(compensation) && compensation !== '') {
+            setCoins(parseInt(compensation) + 1000);
+        } else {
+            setCompensation(1000)
+        }
+    }
+
     const handleReset = () => {
         setAccount('');
         setLevel('');
         setBanknotes('');
         setCoins('');
+        setCompensation('');
     };
 
     const handleSubmit = async (event) => {
@@ -104,6 +135,7 @@ const PanemComponent = message => {
         if (banknotes !== '')  await handleBanknoteSubmit(event);
         if (coins !== '') await handleCoinSubmit(event);
         if (level !== '') await handleLevelSubmit(event);
+        if (compensation !== '') await handleCompensationSubmit(event);
         }
 
         return (
@@ -145,6 +177,17 @@ const PanemComponent = message => {
                         onChange={handleCoins}
                     />
                     <button type="button" className="btn btn-primary" onClick={handleButtonPlusThousandCoinsClick}>+1000
+                    </button>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="compensation">Компенсация:</label>
+                    <input
+                        type="compensation"
+                        value={compensation}
+                        onChange={handleCompensation}
+                    />
+                    <button type="button" className="btn btn-primary"
+                            onClick={handleButtonPlusThousandCompensationClick}>+1000
                     </button>
                 </div>
                 <div className="buttons">
